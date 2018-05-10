@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Links</h1>
+<h1><i>Listing Links</i></h1>
+<br>
 
 <table>
   <thead>
@@ -17,24 +18,26 @@
       <h4><%= link_to link.title, link %><br>
         Submitted <%= time_ago_in_words(link.created_at) %>
         by <%= link.user.email %>
-        <% if link.user == current_user%>
-          <td><%= link_to 'Edit', edit_link_path(link) %></td>
-          <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <%end%>
       </h4>
+        <% if link.user == current_user%>
+          <button type="button"><%= link_to 'Edit', edit_link_path(link) %></button>
+          <button type="button"><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></button>
+        <%end%>
+
 
       <%= link_to like_link_path(link), method: :put do %>
-        Upvote
-        <%= link.get_upvotes.size %>
+        <button type="button">upvote <%= link.get_upvotes.size %></button>
+
       <% end %>
 
       <%= link_to dislike_link_path(link), method: :put do %>
-        Downvote
-        <%= link.get_downvotes.size %>
+        <button type="button">downvote <%= link.get_downvotes.size %></button>
+
       <% end %>
 
-
     <% end %>
+    <br>
+    <br>
   </tbody>
 </table>
 
